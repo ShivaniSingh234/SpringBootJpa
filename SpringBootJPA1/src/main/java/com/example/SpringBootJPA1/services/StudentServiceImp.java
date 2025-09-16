@@ -1,5 +1,8 @@
 package com.example.SpringBootJPA1.services;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +22,7 @@ public class StudentServiceImp implements StudentService {
 		try
 		{
 			studentRepository.save(std);
+			status = true;
 		}
 		catch(Exception e)
 		{
@@ -26,6 +30,27 @@ public class StudentServiceImp implements StudentService {
 			status =false;
 		}
 		return status;
+	}
+
+	@Override
+	public List<Student> getAllStdDetails() {
+		
+		return studentRepository.findAll();
+	}
+
+	@Override
+	public Student getStdDetails(long id) {
+		
+		Optional<Student> optional = studentRepository.findById(id);
+		if(optional.isPresent())
+		{
+			return optional.get();
+		}
+		else
+		{
+			return null;
+		}
+		
 	}
 	
 }

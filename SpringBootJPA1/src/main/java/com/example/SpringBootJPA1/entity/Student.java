@@ -15,8 +15,14 @@ public class Student {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
 	private long id;
+	
+	@Column
 	private String name;
+	
+	@Column
 	private int rollno;
+	
+	@Column
 	private float marks;
 	
 	
